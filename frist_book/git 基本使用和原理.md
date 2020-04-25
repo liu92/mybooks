@@ -95,13 +95,13 @@ vim 文件的url(在英文模式下)
 
 再次按i 进行插入就可以看到 文本中行号的变化了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/c05a56a9-aee9-4d45-a37f-d9a5e5dacd48.jpg)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/c05a56a9-aee9-4d45-a37f-d9a5e5dacd48.jpg)
 
 git 文件目录
 
 在一个工作空间中 使用git bash here 然后初始化 仓库，初始化后可以看到 有.git 隐藏文件
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/ee0a0326-2bd7-4a4f-9ad2-c5e127307f69.png) 
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/ee0a0326-2bd7-4a4f-9ad2-c5e127307f69.png) 
 
  
 
@@ -264,7 +264,7 @@ $\textcolor{Red}{提交对象}$: 项目的版本就是一个提交对象，本�
 
 并且这个数据不会存到git 中 object中去，如果加上了 -w 那么这个数据就会存导 git 目录中 object文件中去
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/18d7d06b-c58c-4ea5-be40-6e9f79f359db.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/18d7d06b-c58c-4ea5-be40-6e9f79f359db.png)
 
 测试
 
@@ -274,17 +274,17 @@ $\textcolor{Red}{提交对象}$: 项目的版本就是一个提交对象，本�
 $ git update-index --add --cacheinfo 100644 560a3d89bf36ea10794402f6664740c284d4ae3b test.txt
 ```
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/2cc30786-1e46-4b35-90a5-31a8f91f52c9.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/2cc30786-1e46-4b35-90a5-31a8f91f52c9.png)
 
 查看暂存区 git ls-files-s
 
 并且git write-tree 生成一个hash, 这个hash对应的类型是tree  
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/714556a1-c07a-47e8-acea-92ba7276c354.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/714556a1-c07a-47e8-acea-92ba7276c354.png)
 
 新增加文件:  并为为这个文件生成git对象
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/b3273c49-c7fb-47ac-bfc5-e16fc9d2afe7.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/b3273c49-c7fb-47ac-bfc5-e16fc9d2afe7.png)
 
  
 
@@ -299,17 +299,17 @@ $ find .git/objects/ -type f
 
 .
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/59051d21-7011-43ce-81de-e6bd6f193553.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/59051d21-7011-43ce-81de-e6bd6f193553.png)
 
 覆盖原来的 test.txt, 并且将 new.txt 加入到暂存区， 这个时候还没有生成树对象
 
 ，当前暂存区中目录和工作区的目录是一样的 能作为项目的第二个版本
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/4d78263d-ae09-4102-9958-f702debb267c.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/4d78263d-ae09-4102-9958-f702debb267c.png)
 
 生成树对象，那么这个时候版本库会再生成一个对象。 这个几个对象（几千个对象）代码项目的下一个版本
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/f6599acd-ea01-4306-a0fe-baaa8f957ae8.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/f6599acd-ea01-4306-a0fe-baaa8f957ae8.png)
 
 ### 二、高层命令：
 
@@ -358,17 +358,17 @@ blob
 
 已经创建但是 还没有加到 工作区。
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/4dbc243d-2c58-4e16-bd2f-06667d966f30.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/4dbc243d-2c58-4e16-bd2f-06667d966f30.png)
 
 ##### 2.使用 git commit  -m "注释"
 
 这个命令会生成 树对象和 提交对象
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/490168cf-5a80-4051-8e25-cc44f8bb5e3d.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/490168cf-5a80-4051-8e25-cc44f8bb5e3d.png)
 
 文件图标变化
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/2527bba8-3d13-43be-9961-c7ba33361d67.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/2527bba8-3d13-43be-9961-c7ba33361d67.png)
 
 ##### 3、基本操作
 
@@ -412,9 +412,9 @@ blob
  git log --online
 ```
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/fb639546-c527-4fa1-a7f8-332bd99bdde0.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/fb639546-c527-4fa1-a7f8-332bd99bdde0.png)
 
-![img](file:///C:/Users/lin/Documents/My Knowledge/temp/c95d820b-5e91-41bb-93fd-22d669717b47/128/index_files/4be48618-dfbc-4853-8622-e6fa72027cc3.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/4be48618-dfbc-4853-8622-e6fa72027cc3.png)
 
 
 删除操作示例:
@@ -423,9 +423,9 @@ blob
 
 要找回来 回到上次提交就可以了。
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/f34b0575-4369-4d92-98b0-037fff0a5a4d.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/f34b0575-4369-4d92-98b0-037fff0a5a4d.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/dcb4bd40-a955-49c7-b0fb-5c10d9a69753.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/dcb4bd40-a955-49c7-b0fb-5c10d9a69753.png)
 
 ##### 4、Git 分支操作
 
@@ -461,7 +461,7 @@ $ git branch
 #查看项目分叉历史
 # git log --oneline --decorate --graph --all 但是这个命令太长了所以可以配置别名
 示例：
-git config --globale alias.co "log --oneline --decorate --graph --all" 
+git config --global alias.co "log --oneline --decorate --graph --all" 
 再次输入的时 使用 git co 就可以查看历史分叉记录了
 # 配置别名
 Git 并不会在你输入部分命令时自动推断你想要的命令。如果不想每次输入完成的Git命令，
@@ -486,23 +486,23 @@ On branch master
 nothing to commit, working tree clean
 ```
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/67678d82-c72f-4854-8b22-de14706db205.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/67678d82-c72f-4854-8b22-de14706db205.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/ffd4dc1b-8ceb-4898-b9b3-436e13568e2c.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/ffd4dc1b-8ceb-4898-b9b3-436e13568e2c.png)
 
 切换分支后 添加新的文件，然后 git add ./ 添加到暂存区， 然后git commit 
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/4ca0dab6-845b-4b8e-8aeb-2996fa0f724d.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/4ca0dab6-845b-4b8e-8aeb-2996fa0f724d.png)
 
 建立分支，但是不切换
 
 $ git branch ssss 685a925
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/9b9ddc1d-db8a-4489-8248-d5c0acba0401.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/9b9ddc1d-db8a-4489-8248-d5c0acba0401.png)
 
 别名
 
-![img](file:///C:/Users/lin/Documents/My Knowledge/temp/c95d820b-5e91-41bb-93fd-22d669717b47/128/index_files/1d1e4a86-2532-47c1-9a15-cca3888dd832.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/1d1e4a86-2532-47c1-9a15-cca3888dd832.png)
 
 ##### 5.切换分支会动那些地方
 
@@ -533,33 +533,33 @@ git commit -m  那么切换分支时就会造成问题   并且这个时候文�
 
 要使用 git add 才将文件加入到暂存区
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/1030a2d3-66e2-47d5-8302-28f807344d58.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/1030a2d3-66e2-47d5-8302-28f807344d58.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/c787855e-bd23-4bee-bb21-aadfb80d5b89.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/c787855e-bd23-4bee-bb21-aadfb80d5b89.png)
 
 这是 分支 test 目录写的文件结构
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/7546f4c4-a592-446f-a6d8-d8544b9833d4.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/7546f4c4-a592-446f-a6d8-d8544b9833d4.png)
 
 切换到主分支 ，可以看到暂存区只有 test.txt文件
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/feb787a9-b852-420d-be40-f3c764bcad58.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/feb787a9-b852-420d-be40-f3c764bcad58.png)
 
 工作目录也是
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/6d50377e-ec43-4e6e-8b03-bc173b1aaa8a.jpg)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/6d50377e-ec43-4e6e-8b03-bc173b1aaa8a.jpg)
 
 ##### 5.2 如果在分支test 上去修改 c.txt 文件，这个时候再去切换分支 就不能切换了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/6a9e6589-9447-4c3c-9da5-2bc57235a39f.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/6a9e6589-9447-4c3c-9da5-2bc57235a39f.png)
 
 ##### 5.3 示例 修改 问题 "#53"
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/a3a1123e-fbaa-4460-a24b-54b0368533b2.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/a3a1123e-fbaa-4460-a24b-54b0368533b2.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/6aee50d6-407f-45f8-adb1-1d63d5706cc1.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/6aee50d6-407f-45f8-adb1-1d63d5706cc1.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/5fde61c3-991f-4900-b5eb-d65a683f926f.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/5fde61c3-991f-4900-b5eb-d65a683f926f.png)
 
 ##### 5.4 当遇到紧急问题是我们切换到主分支，并且新切换一个分支去解决紧急问题。
 
@@ -567,9 +567,9 @@ git commit -m  那么切换分支时就会造成问题   并且这个时候文�
 
 创建新的分支 因为当前分支可能 的问题没有解决 从而造成其他的问题。
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/38a9e61d-adce-4b62-9f58-90927cc2df98.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/38a9e61d-adce-4b62-9f58-90927cc2df98.png)
 
-![img](file:///C:/Users/lin/Documents/My Knowledge/temp/c95d820b-5e91-41bb-93fd-22d669717b47/128/index_files/5c0915f1-980e-4d4b-b1f9-33a797303a24.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/5c0915f1-980e-4d4b-b1f9-33a797303a24.png)
 
 ##### 5.5 合并分支 
 
@@ -583,37 +583,37 @@ git commit -m  那么切换分支时就会造成问题   并且这个时候文�
 
 这时候切换到iss53 分支继续修改问题，可是这个时候也有可能 修改到 同一个文件这样 就会造成冲突。
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/a70fbff5-2be7-413c-8a18-64cbb0ace534.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/a70fbff5-2be7-413c-8a18-64cbb0ace534.png)
 
 比如下面切换到 iss53 分支，这个时候会修改到和 紧急分支修改到相同的文件这样就会造成了冲突
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/d10ea682-5c8a-4610-8039-59bc5e9dd747.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/d10ea682-5c8a-4610-8039-59bc5e9dd747.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/6cdbdabd-c964-46a0-8ebc-f09c7314215b.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/6cdbdabd-c964-46a0-8ebc-f09c7314215b.png)
 
 ##### 5.6 切换到主分支 进行合并，就会看到有冲突
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/34b129a8-2140-4e42-a928-9f57ee80b522.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/34b129a8-2140-4e42-a928-9f57ee80b522.png)
 
 查看冲突文件
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/8c87486c-c622-45d1-a013-bb85e51cc911.jpg)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/8c87486c-c622-45d1-a013-bb85e51cc911.jpg)
 
 解决冲突文件 保留两个分支提交的内容
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/ef1a0c55-9382-44e4-a23e-e10e23863e40.jpg)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/ef1a0c55-9382-44e4-a23e-e10e23863e40.jpg)
 
 查看状态
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/fdeecb4f-cf6f-42a5-81c5-9f1662da4ef6.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/fdeecb4f-cf6f-42a5-81c5-9f1662da4ef6.png)
 
 再次使用命令 git add  就表示解决了冲突了 ，然提交 后就可以看到 分支变化了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/3dc368c9-ed1c-4790-8286-b88b4cc21410.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/3dc368c9-ed1c-4790-8286-b88b4cc21410.png)
 
 查看分支图，可以看到已经到主线上来了，然后删除 分支，从图中可以看出记录
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/9f7de16d-dcae-4c2d-a2a8-099e22cddd28.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/9f7de16d-dcae-4c2d-a2a8-099e22cddd28.png)
 
 ##### 6、Git 存储
 
@@ -631,29 +631,29 @@ git stash drop 加上将要移除的存储名字来移除它
 
 如下图 这个时候修改了文件 ，如果再次切换就会提交 有修改。这个时候不想提交那么就 将其保存到栈上去
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/6171e3d3-047e-4561-a12f-5a54518791ba.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/6171e3d3-047e-4561-a12f-5a54518791ba.png)
 
 查看git stash list ，首次查询时没有，这里进行存储。然后可以看到栈里面已经有了一份
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/e4cd6523-5823-43a5-bcc8-9107e6392fbf.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/e4cd6523-5823-43a5-bcc8-9107e6392fbf.png)
 
 再次查看git status 状态 ，已经是没有可以提交的了。其实 git stash 也是做了提交，但是它的提交不会记录到log里面，git 会给你想看的东西。git默认做的提交 是看不到的
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/4d0192e7-5cb5-426f-ab41-b18edd1e924a.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/4d0192e7-5cb5-426f-ab41-b18edd1e924a.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/71aa6320-9c93-4f9a-86e7-4a6c6719beaf.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/71aa6320-9c93-4f9a-86e7-4a6c6719beaf.png)
 
 这个时候就可以切换分支了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/78130385-53c9-4110-b9a6-60a4007a9466.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/78130385-53c9-4110-b9a6-60a4007a9466.png)
 
 当要 回到那个分支去做未完成的事情时 切换回去，然后使用git stash apply 将其取出来，然后查看已经取出来了，并状态也是未提交
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/2e44b47c-65b2-40a8-8df9-94bc0bd2e4e0.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/2e44b47c-65b2-40a8-8df9-94bc0bd2e4e0.png)
 
 再 将分支取出来是 栈里面还有这个分支信息，那么我们要将其删除
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/7006f204-6855-47d9-b46a-6a64c64c5214.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/7006f204-6855-47d9-b46a-6a64c64c5214.png)
 
 ##### 7、撤回和重置
 
@@ -676,37 +676,37 @@ git stash drop 加上将要移除的存储名字来移除它
 
 使用命令后 可以看到文件 已经被撤回到上一次的内容了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/da1c358c-5bb8-4b02-8948-1ad82478344b.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/da1c358c-5bb8-4b02-8948-1ad82478344b.png)
 
 ##### 7.2暂存区撤回：将一个文件修改后 存在暂存区，如果要撤回
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/bda3fde9-cb26-4b06-a322-419a8db2bd7b.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/bda3fde9-cb26-4b06-a322-419a8db2bd7b.png)
 
 使用命令 git restore --staged da.txt 进行撤回，这个命令 就是取消暂存
 
 可以看到 暂存区的 内容已经撤销回来了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/a7302b93-e70a-4a83-993b-fa6cd6990f70.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/a7302b93-e70a-4a83-993b-fa6cd6990f70.png)
 
 ##### 7.3 将版本库的内容撤回，如果是内容写错了，直接修改重新提交就可以了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/f1d96758-2397-4a13-b7a4-35df364dda66.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/f1d96758-2397-4a13-b7a4-35df364dda66.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/0e6c432c-17a2-4e46-90bf-3b9a54f156d6.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/0e6c432c-17a2-4e46-90bf-3b9a54f156d6.png)
 
 如果是注释写错了，那么就是要 git commit  --amend 进行修改同时可以看 log 日志已经修改了
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/a24305f0-fe06-4d69-9535-19ae8d0180f6.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/a24305f0-fe06-4d69-9535-19ae8d0180f6.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/15550500-2e7b-48ae-90ca-a1de7742d38f.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/15550500-2e7b-48ae-90ca-a1de7742d38f.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/3c9933c7-2003-4e51-90a6-81196daf7925.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/3c9933c7-2003-4e51-90a6-81196daf7925.png)
 
 当修改了文件 ，然后加入到暂存后 ，再次修改
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/e4fbec05-225d-4903-874f-cf773247c2b3.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/e4fbec05-225d-4903-874f-cf773247c2b3.png)
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/c2e6db6f-ec66-4f8f-afaa-aeecf6c85799.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/c2e6db6f-ec66-4f8f-afaa-aeecf6c85799.png)
 
 ##### 8、reset 命令
 
@@ -749,31 +749,31 @@ git stash drop 加上将要移除的存储名字来移除它
     第二个重要的区别是如何更新HEAD。reset会移动HEAD分支的指向，而checkout只会移动HEAD自身来指向另一个分支。
 ```
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/155e3fc5-b6d6-4520-953c-495c0ad45752.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/155e3fc5-b6d6-4520-953c-495c0ad45752.png)
 
 是要 git reset --sofe HEAD~ 命令 可以看到 这个暂存区 和文件 没有变化
 
 这个命令只动 head
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/7b5066dc-e8fb-4c28-abfc-2da75226fb60.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/7b5066dc-e8fb-4c28-abfc-2da75226fb60.png)
 
 如果这时要回到 最开始 的指向那么 还是使用 git reset --soft hash  就可以回到 上一次提交
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/d9e3eaa3-9a16-4547-9997-6df7aee529a2.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/d9e3eaa3-9a16-4547-9997-6df7aee529a2.png)
 
 使用命令 git reset --mixed HEAD~
 
 暂存区 文件查看值 是 1 ，2
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/d9ba8263-d1c0-488a-94ba-a98cfecbf694.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/d9ba8263-d1c0-488a-94ba-a98cfecbf694.png)
 
 如果要会去那么 使用 git reset --mixed 7fd831d
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/41c26db0-7997-42a5-acdb-f1ed442cc224.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/41c26db0-7997-42a5-acdb-f1ed442cc224.png)
 
 使用 git reset --hard HEAD~
 
-![img](https://github.com/liu92/mybooks/frist_book/image/gitimage/6138931a-55e8-4f70-926a-250fbc97d97e.png)
+![img](https://github.com/liu92/mybooks/tree/master/frist_book/image/gitimage/6138931a-55e8-4f70-926a-250fbc97d97e.png)
 
 ##### 9.数据恢复
 
