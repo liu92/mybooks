@@ -383,3 +383,21 @@ synchronized(someObject){
 ​    CountDownLatch内部维护一个拥有表示未完成的先决操作数量的计数器， CountDownLatch.countDown每执行一次就会使相应实例的计数器值减少1，CountDownLatch.await()相当于一个受保护方法，其保护条件为“计数器值为0(代表所有先决操作执行完毕)”。因此，当计数器值不为零时 CountDownLatch.await()的执行线程会被暂停，这些线程就被称为相应CountDownLatch的等待线程。CountDownLatch.countDown相当于一个通知方法，它会在计数器到达0的时候唤醒相应实例上的所有等待线程。
 
    当计数器的值达到0之后，该计数器的值就不会再发生变化。此时，调用CountDownLatch.countDown()并不会导致异常的抛出，并且后续执行CountDownLatch.await()的线程也不会被暂停。因此，CountDownLatch的使用是一次性的：一个CountDownLatch实例只能够实现一次等待和唤醒。
+
+##### 7、CyclicBarrier：相互等待对方执行到达代码的某个地方（集合点），这时这些线程才能够继续执行。
+
+  内部实现原理：内部使用了一个条件变量trip来实现等待/通知。CyclicBarrier内部实现使用了分代（Generation）的概念用于表示CyclicBarrier实例是可以重复使用的，除最后一个线程外的任何一个参与方都相当于一个等待线程，这些线程所使用的保护条件是"当前分代内，尚未执行await方法参与方法个数(parties)为0"。
+
+当前分代的初始状态是parties等于参与方总数(通过构造器中parties参数指定)。CyclicBarrier.await()每被执行一次会使相应实例的parties值减少1。最后一个线程相当于通知线程，它执行CyclicBarrier.await()会使相应实例的parties值变为0，此时该线程会先执行barrierActionrun(),然后再执行trip.signalAll()来唤醒所以等待线程。接着，开始下一个分代，即使CyclicBarrier的parties值又重新恢复为其初始值。
+
+
+
+##### 8、BlockingQueue阻塞队列
+
+ 往队列中存入一个元素（对象）的操作被称为put操作，从队列中取出一个元素（对象）的操作被称为take操作。
+
+8.1 ArrayBlockingQueue 
+
+  内部使用一个数组作为其存储空间，而数组的存储空间是预先分配好的，因此ArrayBlockingQueue 的put操作、take操作本身并不会增加垃圾回收的负担。ArrayBlockingQueue 的缺点是其内部在实现put、take操作时使用的是同一个锁（显示锁），从而导致锁的高争用，进而导致较多的上下文切换
+
+8.2  LinkedBlockingQueue 
