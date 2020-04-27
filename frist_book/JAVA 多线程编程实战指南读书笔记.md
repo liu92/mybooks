@@ -386,9 +386,13 @@ synchronized(someObject){
 
 ##### 7、CyclicBarrier：相互等待对方执行到达代码的某个地方（集合点），这时这些线程才能够继续执行。
 
-  内部实现原理：内部使用了一个条件变量trip来实现等待/通知。CyclicBarrier内部实现使用了分代（Generation）的概念用于表示CyclicBarrier实例是可以重复使用的，除最后一个线程外的任何一个参与方都相当于一个等待线程，这些线程所使用的保护条件是"当前分代内，尚未执行await方法参与方法个数(parties)为0"。
+
+
+```
+内部实现原理：内部使用了一个条件变量trip来实现等待/通知。CyclicBarrier内部实现使用了分代（Generation）的概念用于表示CyclicBarrier实例是可以重复使用的，除最后一个线程外的任何一个参与方都相当于一个等待线程，这些线程所使用的保护条件是"当前分代内，尚未执行await方法参与方法个数(parties)为0"。
 
 当前分代的初始状态是parties等于参与方总数(通过构造器中parties参数指定)。CyclicBarrier.await()每被执行一次会使相应实例的parties值减少1。最后一个线程相当于通知线程，它执行CyclicBarrier.await()会使相应实例的parties值变为0，此时该线程会先执行barrierActionrun(),然后再执行trip.signalAll()来唤醒所以等待线程。接着，开始下一个分代，即使CyclicBarrier的parties值又重新恢复为其初始值。
+```
 
 
 
@@ -396,8 +400,42 @@ synchronized(someObject){
 
  往队列中存入一个元素（对象）的操作被称为put操作，从队列中取出一个元素（对象）的操作被称为take操作。
 
-8.1 ArrayBlockingQueue 
+###### 8.1 ArrayBlockingQueue 
 
-  内部使用一个数组作为其存储空间，而数组的存储空间是预先分配好的，因此ArrayBlockingQueue 的put操作、take操作本身并不会增加垃圾回收的负担。ArrayBlockingQueue 的缺点是其内部在实现put、take操作时使用的是同一个锁（显示锁），从而导致锁的高争用，进而导致较多的上下文切换
+```
+内部使用一个数组作为其存储空间，而数组的存储空间是预先分配好的，因此ArrayBlockingQueue 的put操作、take操作本身并不会增加垃圾回收的负担。ArrayBlockingQueue 的缺点是其内部在实现put、take操作时使用的是同一个锁（显示锁），从而导致锁的高争用，进而导致较多的上下文切换
+```
 
-8.2  LinkedBlockingQueue 
+
+
+###### 8.2  LinkedBlockingQueue 
+
+  ```
+LinkedBlockingQueue既能实现无界队列，也能实现有界队列。 该队列的优点是在内部实现put，take方法时分别使用了两个显示锁（putLock和takeLock）,这降低了锁争用的可能性。LinkedBlockingQueue内部存储空间是一个链表，而链表节点（对象）所需的存储空间是动态分配的，put操作，take操作都会导致链表节点的动态创建和移除，LinkedBlockingQueue的缺点是它可能增加垃圾回收的负担。 LinkedBlockingQueue的put和take时两个锁，所以在维护当前队列长度（size）时无法使用一个普通的int型变量而是使用了一个原子变量（AtomicInteger）。这个原子变量可能会被生成者线程和消费者线程争用，因此他可能导致额外的开销。
+  ```
+
+###### 8.3 SynchronousQueue 
+
+```
+这个队列可以被看做是一种特殊的有界队列。 SynchronousQueue 内部并不维护用于存储队列元素的存储空间。
+SynchronousQueue 所实现的通道更像是邮递员投送挂号信时与收件人接触的情形-邮递员必须在收件人签收后才能离开。
+因此 SynchronousQueue 适合于消费者处理能力与生产者能相差不大的情况下使用。 
+ArrayBlockingQueue 适用于生产者和消费者线程之间的并发程度较低的情况下使用
+LinkedBlockingQueue 适用于生产者和消费者线程之间的并发程度较高的情况下使用
+```
+
+
+
+##### 9、线程中断机制
+
+有时候我们需要一个线程请求另外一个线程停止其正在执行的操作。比如，某些比较耗时的任务，我们往往采用专门的工作者线程来负责其执行，如果中要取消(比如用户不想等了) 这类任务的执行，那么就需要借助java线程中断机制。
+
+```
+ 中断(Interrupt)可以被看作一个线程(发起线程Originator)发送给另一个线程（目标线程Target）的一种指示，该指示用于表示发起线程希望目标线程停止其正在执行的操作。 中断仅仅代表发起线程的一个诉求，而这个诉求能否被满足则取决于目标线程自身----目标线程可能会满足发起线程的诉求，也可能根本不理会发起线程的诉求！java平台会为每个线程维护一个被称为中断标记（Interrupt Status）的布尔类型状态变量用于表示相应线程是否接收到了中断，中断标记值为true表示相应线程收到了中断。目标线程可以通过Thread.currentThread.isInterrupted调用来获取该线程的中断标记值，也可以通过Thread.interrupted来获取并重置（也称为清空）中断标记值。
+
+ 目标线程检查中断标记后所执行的操作，被称为目标线程对中断的响应，检查中断响应，设有个发起线程Originator和目标线程target，那么target对中断的响应一般包括：
+  ** 无影响。Originator调用target.interrupt()不会对target的运行产生任何影响，这种情形也可以为目标线程无法对中断进行响应。InputStream.read(), ReentrantLock.lock以及申请内部锁等阻塞方法/操作就属于这种类型
+  ** 取消任务的运行。 Originator 调用target.interrupt()会使target在侦测到中断(即标记值为true) 那一刻所执行的任务被取消(中止)，而这并不会运行 target继续处理任务
+  ** 工作者线程停止。Originator调用target.interrupt会使target终止，即target的生命周期状态变更为TERMINATED
+```
+
