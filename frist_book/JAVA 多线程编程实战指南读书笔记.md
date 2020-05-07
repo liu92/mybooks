@@ -439,3 +439,28 @@ LinkedBlockingQueue 适用于生产者和消费者线程之间的并发程度较
   ** 工作者线程停止。Originator调用target.interrupt会使target终止，即target的生命周期状态变更为TERMINATED
 ```
 
+9.1、能够响应中断的方法通常是在执行阻塞操作判断中断标志，若中断标志值为true则抛出InterruptedException。例如, ReentrantLock.lockInterruptibly()的功能与ReentrantLock.lock()类似，二者都能用于申请相应的显示锁，但是ReentrantLock.lockInterruptibly()能够对中断做出响应。ReentrantLock.lockInterruptibly()方法对中断的响应是通过其调用的一个名为 acquireInterruptibly的方法实现的。acquireInterruptibly方法会在执行申请锁这个阻塞操作前检查线程的中断标记，若中断标记为true则抛出InterruptedException异常。
+
+
+
+Tips:依照惯例，抛出InterruptedException异常的方法，通常会在其抛出该异常是将当前线程的线程中断标记重置为false
+
+
+
+###### 9.2、对InterruptedException异常 的正确处理方式包括以下几种
+
+     * 不捕获InterruptedException。如果应用代码的某个方法调用了能够对中断进行响应的阻塞方法，那么我们可以选择在这个方法的异常 声明（throws)中也加一个InterruptedException。这种做法实质上时当前方法不知道该如何处理比较恰当，因此将 “难题” 抛给其上层代码（比如这个方法的调用方）。
+     * 捕获InterruptedException后重新将该异常抛出。使用这种策略通常是由于应用代码需要捕获InterruptedException并对此做一些中间处理（比如处理部分完成的任务），接着再将 “难题” 抛给其上层代码。
+     * 捕获InterruptedException并在捕获该异常后中断当前线程。这种策略实际上在捕获到InterruptedException后又恢复中断标志，这相当于当前代码告诉其他代码：“我发现了中断，但我并不知道如何处理比较妥当，因此我为你保留了中断标记，你看着办吧！”
+
+
+
+
+
+#### 14、线程安全的设计技术
+
+#####      1、不可变对象
+
+​       指一经创建其状态就保持不变的对象。不可变对象也具有固有的线程安全性，因此不可变对象也可以像无状态对象那样被多个线程共享，而这些线程方法共享对象的时候无须加锁。
+
+​      
