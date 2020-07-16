@@ -274,7 +274,7 @@ $\textcolor{Red}{提交对象}$: 项目的版本就是一个提交对象，本�
 $ git update-index --add --cacheinfo 100644 560a3d89bf36ea10794402f6664740c284d4ae3b test.txt
 ```
 
-![img](/image/gitimage/2cc30786-1e46-4b35-90a5-31a8f91f52c9.png)
+![img](image/gitimage/2cc30786-1e46-4b35-90a5-31a8f91f52c9.png)
 
 
 
