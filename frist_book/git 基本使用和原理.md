@@ -276,6 +276,8 @@ $ git update-index --add --cacheinfo 100644 560a3d89bf36ea10794402f6664740c284d4
 
 ![img](/image/gitimage/2cc30786-1e46-4b35-90a5-31a8f91f52c9.png)
 
+
+
 查看暂存区 git ls-files-s
 
 并且git write-tree 生成一个hash, 这个hash对应的类型是tree  
