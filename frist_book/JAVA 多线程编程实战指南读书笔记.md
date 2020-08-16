@@ -265,6 +265,104 @@ volatile关键字 表示被修饰的变量的值容易变化，因而不稳定�
 
 释放屏障禁止了volatile写操作与该操作之前的任何读、写操作进行重排序，从而保证了volatile写操作之前的任何读、写操作会先于volatile写操作被提交，即其他线程看到写线程对volatile变量的更新时，写线程在更新volatile变量之前所执行的内存操作的结果对于读线程必然也是可见的。这就保障了读线程对写线程在更新volatile变量前对共享变量所执行的更新操作的感知顺序与相应的源代码顺序一致，即保障了有序性。
 
+
+
+##### $\textcolor{red}{Happens-Before规则}$
+
+Happens-Before真正表达的意思是：$\textcolor{red}{前面一个操作的结果对后续操作是可见的。}$而不是前面一个操作发生在后续操作的前面。
+
+规则：
+
+a:程序的顺序性规则
+
+$\textcolor{red}{前面一个操作的结果对后续操作是可见的。}$而不是前面一个操作发生在后续操作的前面。
+
+示例：
+
+```java
+// 以下代码来源于【参考 1】
+class VolatileExample {
+  int x = 0;
+  volatile boolean v = false;
+  public void writer() {
+    x = 42;
+    v = true;
+  }
+  public void reader() {
+    if (v == true) {
+      // 这里 x 会是多少呢？
+    }
+  }
+}
+```
+
+上面程序, 假设A线程执行writer()方法 按照volatile语义会把变量"v=true"写入内存，假设B线程执行reader()方法。同样按照volatile语义，线程B会从内存中读取变量v, 如果线程B看到"v=true"时，那么线程B看到的变量x是多少呢？
+
+从直觉上看，应该是42，那实际应该是多少呢？这个需要看java版本。如果是在低于1.5的版本上运行，x可能是42，也可能是0；如果在1.5以上的版本上运行，x就是42。 这个问题原因是变量x可能被CPU缓存而导致可见性问题。而这个问题再1.5版本已经被圆满解决。java内存模型再1.5版本对volatile语义进行了增强。处理方式是一项Happens-Before中的规则。
+
+![](image/gitimage/20200813161930-thread-volatile.png)
+
+从图中可以看到：
+
+1、"x=42" Happens-Before写变量 "v=true"，这是规则1的内容；
+
+2、写变量"v=true" Happens-Before读变量 "v=true"，这是规则2的内容
+
+根据传递性规则，可以得到 "x=42" Happens-Before 读变量"v=true" ,这就意味着 如果线程B读到了 "v=true"，那么线程A设置的"x=42" 对线程B是可见的。也就是说，线程B能看到 "x==42"。
+
+
+
+
+
+b:管程中锁的规则
+
+```
+An unlock on a monitor happens-before every subsequent lock on that monitor. 一个unlock操作Happens-Before后面对同一个锁的lock操作。 
+要理解"管程指的是什么"。管程是一种通用的同步原语，在java中指的就是synchronized, synchronized是java里对管程的实现。
+```
+
+c:volatile变量规则
+
+```
+对一个volatile变量的写操作相对于后续对这个volatile变量的读操作可见。
+```
+
+d:线程启动规则
+
+```
+Thread对象的start()方法Happens-Before(前面一个操作的结果对后续操作是可见的)此线程的每一个动作。
+
+这条是关于线程启动的。它是指主线程 A 启动子线程 B 后，子线程 B 能够看到主线程在启动子线程 B 前的操作。
+```
+
+e:线程终止规则
+
+```
+线程中的所有操作都Happens-Before对此线程的终止检测。
+```
+
+f: 线程中断规则 
+
+```
+对线程interrupt()方法的调用Happens-Before被中断线程的代码检测到中断事件的发生，可以通过Thread.interrupt()方法检测到是否有中断发生。
+```
+
+g:对象终结规则
+
+```
+一个对象的初始化完成（构造函数执行结束）Happens-Before它的finalize()方法的开始。
+```
+
+h:传递性
+
+```
+如果A Happens-Before B, 且B Happens-Before C, 那么A Happens-Before C。
+```
+
+
+
+
+
 ##### 12、CAS与原子变量，CAS(Compare-and-Swarp) 是一种对处理器指令的称呼。 
 
 CAS能将read-modify-write和check-and-act子类的操作转换为原子操作。
