@@ -346,6 +346,19 @@ lists.forEach(new Consumer<Integer>() {
 lists.forEach(System.out::println);
 ```
 
+6.4、java8内置4大函数式接口
+
+ ```
+Consutmer<T>:消费式接口。 作用:对类型为T的对象应用操作,包含方法 void accept(T t);
+Supplier<T>:供给型接口。   作用:返回类型为T的对象，包含方法T get();
+Function<T,R>:函数式接口。 作用:对类型为T的对象应用操作,并返回结果。结果是R类型的对象。包含方法:R apply(T t);
+Predicate<T>:断定型接口。作用:确定类型为T的对象是否满足某约束，并返回boolean值。包含 boolean test(T t);
+ ```
+
+
+
+
+
 
 
 ## 7、lambda表达式 深入与流初步

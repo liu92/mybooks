@@ -53,3 +53,27 @@ L3 cache:              15360K
 NUMA node0 CPU(s):     0-7
 ```
 
+查看centos版本信息
+
+```shell
+[root@localhost conf]# lsb_release -a
+LSB Version:	:core-4.1-amd64:core-4.1-noarch:cxx-4.1-amd64:cxx-4.1-noarch:desktop-4.1-amd64:desktop-4.1-noarch:languages-4.1-amd64:languages-4.1-noarch:printing-4.1-amd64:printing-4.1-noarch
+Distributor ID:	CentOS
+Description:	CentOS Linux release 7.8.2003 (Core)
+Release:	7.8.2003
+Codename:	Core
+[root@localhost conf]# 
+```
+
+
+
+```shell
+安装gcc依赖
+Nginx与Redis一样，都是C语言开发的，所以都需要在Linux上使用C语言编译后才能使用，所以得先安装用于编译的c环境
+安装Redis时，只需要安装下面第一项的"yum install gcc-c++"即可；nginx则需要安装下面4项
+yum install -y gcc-c++
+yum install -y pcre pcre-devel
+yum install -y zlib zlib-devel
+yum install -y openssl openssl-devel
+```
+
